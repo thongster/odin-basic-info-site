@@ -2,7 +2,13 @@ const http = require('http')
 const fs = require('fs');
 
 const server = http.createServer((req, res) => {
-    res.end('Hello')
+    fs.readFile("./index.html", (err, data) => {
+        if (err) {
+            res.statusCode = 404;
+            res.end('server error')
+        }
+        res.end(data)
+    });
 })
 
 server.listen(8080, () => {
