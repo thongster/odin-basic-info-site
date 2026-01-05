@@ -33,6 +33,17 @@ const server = http.createServer((req, res) => {
         }
         res.end(data)
         });
+    } else if (urlPath === "/style.css") {
+        fs.readFile("./style.css", (err, data) => {
+            if (err) {
+                res.statusCode = 404;
+                res.end("CSS not found");
+                return;
+            }
+
+            res.writeHead(200, { "Content-Type": "text/css" });
+            res.end(data);
+        });
     } else {
         fs.readFile("./404.html", (err, data) => {
         if (err) {
