@@ -16,11 +16,13 @@ const server = http.createServer((req, res) => {
     } else if (urlPath === './contact-me.html') {
 
     } else {
-        
+
     }
 
 })
 
-server.listen(8080, () => {
-    console.log("Server is running on http://localhost:8080/")
+const PORT = process.env.PORT || 8080;
+
+server.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}/`)
 })
