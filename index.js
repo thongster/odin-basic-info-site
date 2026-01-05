@@ -1,8 +1,9 @@
 const http = require('http')
 const fs = require('fs');
-const urlPath = req.url;
 
 const server = http.createServer((req, res) => {
+    const urlPath = req.url;
+
     if (urlPath === './index.html' || urlPath === '/') {
         fs.readFile("./index.html", (err, data) => {
         if (err) {
@@ -12,11 +13,29 @@ const server = http.createServer((req, res) => {
         res.end(data)
         });
     } else if (urlPath === './about.html') {
-
+        fs.readFile("./about.html", (err, data) => {
+        if (err) {
+            res.statusCode = 404;
+            res.end('server error')
+        }
+        res.end(data)
+        });
     } else if (urlPath === './contact-me.html') {
-
+        fs.readFile("./contact-me.html", (err, data) => {
+        if (err) {
+            res.statusCode = 404;
+            res.end('server error')
+        }
+        res.end(data)
+        });
     } else {
-
+        fs.readFile("./404.html", (err, data) => {
+        if (err) {
+            res.statusCode = 404;
+            res.end('server error')
+        }
+        res.end(data)
+        });
     }
 
 })
