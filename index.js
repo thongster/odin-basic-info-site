@@ -1,8 +1,12 @@
 const express = require("express");
 const app = express();
-app.use(express.static("./"));
+const path = require('path');
 
-// app.get("/", (req, res) => res.send("index.html"));
+app.use(express.static("./")) // read static pages, in this case for css
+
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "index.html"))
+});
 
 const PORT = 3000;
 app.listen(PORT, (error) => {
