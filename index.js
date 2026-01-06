@@ -1,3 +1,20 @@
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => res.send("Hello, world!"));
+
+const PORT = 3000;
+app.listen(PORT, (error) => {
+  // This is important!
+  // Without this, any startup errors will silently fail
+  // instead of giving you a helpful error message.
+  if (error) {
+    throw error;
+  }
+  console.log(`My first Express app - listening on port ${PORT}!`);
+});
+
+
 const http = require('http')
 const fs = require('fs');
 
@@ -55,12 +72,4 @@ const server = http.createServer((req, res) => {
         });
     }
     
-})
-
-
-
-const PORT = process.env.PORT || 8080;
-
-server.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}/`)
 })
